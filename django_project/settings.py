@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DJANGO_DEBUG")  # new
 
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"] 
 
@@ -85,6 +85,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 
 
 DATABASES = {
@@ -159,3 +160,7 @@ ACCOUNT_USERNAME_REQUIRED = False # new
 ACCOUNT_AUTHENTICATION_METHOD = "email" # new
 ACCOUNT_EMAIL_REQUIRED = True # new
 ACCOUNT_UNIQUE_EMAIL = True # new
+
+DEFAULT_FROM_EMAIL = "admin@djangobookstore.com" # new
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
