@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     #local libraries
     "accounts.apps.AccountsConfig", # new
     "pages.apps.PagesConfig", # new
+    "books.apps.BooksConfig", # new
 ]
 
 MIDDLEWARE = [
