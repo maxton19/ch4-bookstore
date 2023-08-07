@@ -7,6 +7,7 @@ from django.urls import reverse
 class Book(models.Model):
     id = models.UUIDField(  # new
         primary_key=True,
+        db_index=True, # new
         default=uuid.uuid4,
         editable=False)
     title = models.CharField(max_length=200)
@@ -14,7 +15,10 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cover = models.ImageField(upload_to="covers/", blank=True)  # new
 
-    class Meta: # new
+    class Meta: 
+        indexes = [  # new
+            models.Index(fields=["id"], name="id_index"),
+        ]
         permissions = [
             ("special_status", "Can read all books"),
         ]
