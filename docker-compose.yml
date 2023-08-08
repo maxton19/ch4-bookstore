@@ -3,7 +3,7 @@ version: '3.9'
 services:
   web:
     build: .
-    command: gunicorn django_project.wsgi -b 0.0.0.0:8000 # new
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
@@ -13,12 +13,7 @@ services:
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-n#n*of!!ae6cuefo5ne-t=5y9-#jj$)c3=cea#a^jo26+v093_"
       - "DJANGO_DEBUG=True"
-      - "DJANGO_SECURE_SSL_REDIRECT=False" 
-      - "DJANGO_SECURE_HSTS_SECONDS=0" # new
-      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False" # new
-      - "DJANGO_SECURE_HSTS_PRELOAD=False" # new
-      - "DJANGO_SESSION_COOKIE_SECURE=False" # new
-      - "DJANGO_CSRF_COOKIE_SECURE=False" # new
+      - "DJANGO_SECURE_SSL_REDIRECT=False" # new
   db:
     image: postgres:13
     volumes:
